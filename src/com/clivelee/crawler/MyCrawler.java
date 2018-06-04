@@ -1,4 +1,4 @@
-package com.clivelee;
+package com.clivelee.crawler;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;

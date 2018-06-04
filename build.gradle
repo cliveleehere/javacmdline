@@ -37,3 +37,9 @@ sourceSets {
 }
 
 mainClassName = "com.clivelee.Main"
+
+run {
+    if (project.hasProperty("url")) {
+        args project.property("url")
+    }
+}

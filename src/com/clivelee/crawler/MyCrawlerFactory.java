@@ -1,5 +1,6 @@
-package com.clivelee;
+package com.clivelee.crawler;
 
+import com.clivelee.crawler.MyCrawler;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 
 public final class MyCrawlerFactory implements CrawlController.WebCrawlerFactory<MyCrawler> {
