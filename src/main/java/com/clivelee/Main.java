@@ -10,6 +10,8 @@ public class Main {
 
         Configuration configuration = new ArgumentProcessor().parseArguments(args);
 
-        new Crawler(configuration).crawl();
+        System.out.println("Found these email addresses:");
+        Crawler crawler = new Crawler(configuration);
+        crawler.crawl();
     }
 }
