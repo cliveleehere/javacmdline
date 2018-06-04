@@ -4,8 +4,7 @@ import org.apache.http.util.TextUtils;
 
 import java.net.URI;
 
-public final class ArgumentProcessor implements IArgumentProcessor {
-    @Override
+public final class ArgumentProcessor {
     public Configuration parseArguments(String[] args) {
 
         if (args == null || args.length != 1) {

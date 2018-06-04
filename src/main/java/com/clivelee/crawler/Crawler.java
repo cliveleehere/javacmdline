@@ -1,21 +1,22 @@
-package com.clivelee;
+package com.clivelee.crawler;
 
-import com.clivelee.config.ArgumentProcessor;
 import com.clivelee.config.Configuration;
-import com.clivelee.crawler.MyCrawlerFactory;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
-public class Main {
+public class Crawler {
 
-    public static void main(String[] args) throws Exception {
+    private Configuration configuration;
 
-        Configuration configuration = new ArgumentProcessor().parseArguments(args);
+    public Crawler(Configuration configuration) {
+        super();
+        this.configuration = configuration;
+    }
 
-
+    public void crawl() throws Exception {
         String crawlStorageFolder = "./crawl/root";
         int numberOfCrawlers = 4;
 
@@ -23,14 +24,14 @@ public class Main {
         config.setCrawlStorageFolder(crawlStorageFolder);
         config.setIncludeHttpsPages(true);
 
+
         PageFetcher pageFetcher = new PageFetcher(config);
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
 
-//        controller.addSeed("http://www.ics.uci.edu/");
-        controller.addSeed("www.ics.uci.edu");
+        controller.addSeed(configuration.domainName());
 
-        controller.start(new MyCrawlerFactory(), numberOfCrawlers);
+        controller.start(new EmailCrawlerFactory(configuration.domainName()), numberOfCrawlers);
     }
 }

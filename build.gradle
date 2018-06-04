@@ -15,25 +15,10 @@ repositories {
 dependencies {
     compile 'com.google.guava:guava:23.0'
     compile 'edu.uci.ics:crawler4j:4.4.0'
-    compile 'commons-validator:commons-validator:1.6'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
     testCompile 'com.google.truth:truth:0.40'
-}
-
-sourceSets {
-    main {
-        java {
-            srcDirs = ["src"]
-        }
-    }
-
-    test {
-        java {
-            srcDirs = ["test"]
-        }
-    }
 }
 
 mainClassName = "com.clivelee.Main"
