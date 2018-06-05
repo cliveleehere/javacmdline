@@ -7,4 +7,9 @@ public final class Configuration {
     Configuration(String domainName) {
         this.domainName = domainName;
     }
+
+    @Override
+    public String toString() {
+        return "Domain Name: " + domainName;
+    }
 }
