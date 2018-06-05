@@ -1,6 +1,5 @@
 package com.clivelee.crawler;
 
-import com.clivelee.crawler.EmailCrawler;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 
 import java.util.HashSet;
@@ -14,6 +13,7 @@ final class EmailCrawlerFactory implements CrawlController.WebCrawlerFactory<Ema
         this.domainName = domainName;
     }
 
+    @SuppressWarnings("RedundantThrows")
     @Override
     public EmailCrawler newInstance() throws Exception {
         return new EmailCrawler(domainName, emails);

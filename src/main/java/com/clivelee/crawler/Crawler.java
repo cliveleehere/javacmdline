@@ -10,9 +10,11 @@ import org.apache.http.util.TextUtils;
 
 public class Crawler {
 
-    private String url;
     private static int numberOfCrawlers = 4;
     private static int numberOfPages = 100;
+
+    private String url;
+    private String domainName;
     private CrawlConfig crawlConfig;
     private PageFetcher pageFetcher;
 
@@ -20,6 +22,10 @@ public class Crawler {
         this.url = url;
         this.crawlConfig = crawlConfig;
         this.pageFetcher = pageFetcher;
+
+        this.domainName = url.toLowerCase();
+        if (domainName.startsWith("https://")) domainName = domainName.substring(8);
+        else if (domainName.startsWith("http://")) domainName = domainName.substring(7);
     }
 
     public static Crawler create(Configuration configuration) throws InvalidConfigurationException {
@@ -59,7 +65,7 @@ public class Crawler {
         CrawlController controller = new CrawlController(crawlConfig, pageFetcher, robotstxtServer);
 
         controller.addSeed(url);
-        EmailCrawlerFactory emailCrawlerFactory = new EmailCrawlerFactory(url);
+        EmailCrawlerFactory emailCrawlerFactory = new EmailCrawlerFactory(domainName);
 
         controller.start(emailCrawlerFactory, numberOfCrawlers);
     }
